@@ -18,7 +18,7 @@ import apiService from '@/services/api.service'
         <router-link v-if="!apiService.isAuthenticated() && $route.path !== '/connexion'" to="/connexion">Se connecter</router-link>
     
     <!-- Se déconnecter (Affiché uniquement si l'utilisateur est authentifié et n'est pas sur la page de connexion) -->
-    <router-link v-else-if="apiService.isAuthenticated && $route.path !== '/connexion'" @click="apiService.disconnect()" to="/connexion">Se déconnecter</router-link>
+    <router-link v-else-if="apiService.isAuthenticated() && $route.path !== '/connexion'" @click="apiService.disconnect()" to="/connexion">Se déconnecter</router-link>
       </nav>
     </div>
   </header>
