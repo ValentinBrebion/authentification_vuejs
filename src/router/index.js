@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import apiService from '@/services/api.service';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,5 +28,13 @@ const router = createRouter({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'connexion' && !apiService.isAuthenticated()) {
+    next({ name: 'connexion' });
+  } else {
+    next();
+  }
+});
 
 export default router

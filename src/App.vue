@@ -1,6 +1,8 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import apiService from '@/services/api.service'
+
 </script>
 
 <template>
@@ -13,7 +15,8 @@ import HelloWorld from './components/HelloWorld.vue'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/connexion">Se connecter</RouterLink>
+        <RouterLink v-if="!apiService.isAuthenticated()" to="/connexion">Se connecter</RouterLink>
+        <RouterLink v-else @click="apiService.disconnect()" to="/connexion">Se deconnecter</RouterLink>
       </nav>
     </div>
   </header>
