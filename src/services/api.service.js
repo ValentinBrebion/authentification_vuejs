@@ -2,7 +2,7 @@ import axios from '../config/axios'
 const login = (identifier, password) => {return axios.post('/auth/local', {identifier, password})}
 
 const isAuthenticated = () => {
-    return !!`Bearer ${localStorage.getItem('AUTH_TOKEN')}`;
+    return !!localStorage.getItem('AUTH_TOKEN');
   };
   const disconnect = () => {
     localStorage.clear();
